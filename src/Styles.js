@@ -113,6 +113,12 @@ export const Wrapper = styled.div`
     input[type='range']:focus::-ms-fill-upper {
         background: #424242;
     }
+
+    .cords {
+        position: absolute;
+        right: 70px;
+        top: 60px;
+    }
 `;
 
 export const Canvas = styled.canvas`

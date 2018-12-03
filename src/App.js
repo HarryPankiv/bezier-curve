@@ -12,7 +12,8 @@ class App extends Bezier {
             x: 0,
             y: 0,
             history: [],
-            animation: 100
+            animation: 100,
+            showCords: false
         };
     }
     componentDidMount = () => {
@@ -107,8 +108,12 @@ class App extends Bezier {
         this.setState({cords: [...flatten(history), ...cords], history: []});
     }
 
+    showCords = () => {
+        this.setState({showCords: !this.state.showCords})
+    }
+
     render() {
-        const { x, y, animation } = this.state;
+        const { x, y, animation, cords, showCords } = this.state;
         return (
             <React.Fragment>
                 <Wrapper>
@@ -123,6 +128,11 @@ class App extends Bezier {
                     <button onClick={this.clear}>clear</button>
                     <button onClick={this.newCurve}>new curve</button>
                     <button onClick={this.mergeCurves}>merge curves</button>
+                    <button onClick={this.showCords}>show points</button>
+                    { showCords && <div className="cords">
+                        <h4>current cords: </h4>
+                        {cords.map( el => <div>{el.x}, {el.y}</div>)}
+                    </div>}
                 </Wrapper>
                 <Canvas id="canvas" height={600} width={600} />
             </React.Fragment>
